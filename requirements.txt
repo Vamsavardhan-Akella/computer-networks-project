@@ -14,3 +14,4 @@ python-nmap==0.7.1
 eventlet==0.33.3
 requests==2.32.3
 pysnmp==4.4.12
+gunicorn
