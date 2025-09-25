@@ -2,16 +2,17 @@
 # Install with: pip install -r requirements.txt
 
 # Core Flask framework
-Flask==3.0.0
+Flask
 
 # Real-time WebSocket communication (compatible versions)
-Flask-SocketIO==5.3.6
+Flask-SocketIO
 
 # For real network scanning (will replace mock discovery)
-python-nmap==0.7.1
+python-nmap
 
 # Additional dependencies for network operations
-eventlet==0.33.3
-requests==2.32.3
-pysnmp==4.4.12
+eventlet
+requests
+pysnmp
 gunicorn
+
