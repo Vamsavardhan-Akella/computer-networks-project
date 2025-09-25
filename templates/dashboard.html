@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Network Discovery MVP Dashboard</title>
+
+    <!-- External Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.26.0/cytoscape.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.js"></script>
+
+    <!-- Local Stylesheets -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
+  </head>
+  <body>
+    <div class="header">
+      <h1>🌐 Network Discovery MVP</h1>
+      <div class="controls">
+        <div class="status" id="statusMessage">Ready to scan</div>
+        <button class="btn primary" id="scanBtn">Start Scan</button>
+        <button class="btn" id="clearBtn">Clear</button>
+
+        <div class="auto-scan-controls">
+          <button class="btn auto-scan" id="autoScanBtn">Auto-Scan</button>
+          <input
+            type="number"
+            class="interval-input"
+            id="intervalInput"
+            min="30"
+            max="3600"
+            value="60"
+            title="Interval in seconds (30-3600)"
+          />
+          <span style="font-size: 0.8rem">sec</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="main-container">
+      <div class="network-graph">
+        <div id="cy"></div>
+        <div class="loading" id="loading" style="display: none">
+          <div class="spinner"></div>
+          <div>Discovering network devices...</div>
+        </div>
+      </div>
+
+      <div class="sidebar">
+        <div class="stats">
+          <h3>📊 Network Stats</h3>
+          <div class="stat-item">
+            <span>Devices Found:</span>
+            <span id="deviceCount">0</span>
+          </div>
+          <div class="stat-item">
+            <span>Last Scan:</span>
+            <span id="lastScan">Never</span>
+          </div>
+          <div class="stat-item">
+            <span>Status:</span>
+            <span id="scanStatus">Idle</span>
+          </div>
+        </div>
+
+        <div class="auto-scan-status" id="autoScanStatus">
+          <h3>🔄 Auto-Scan</h3>
+          <div class="stat-item">
+            <span>Status:</span>
+            <span id="autoScanStatusText">Disabled</span>
+          </div>
+          <div class="stat-item" id="intervalDisplay" style="display: none">
+            <span>Interval:</span>
+            <span id="autoScanInterval">60s</span>
+          </div>
+          <div class="next-scan" id="nextScanDisplay" style="display: none">
+            Next scan: <span class="countdown" id="nextScanTime">--</span>
+          </div>
+        </div>
+
+        <div class="device-list">
+          <h3>📱 Discovered Devices</h3>
+          <div id="deviceList">
+            <div style="text-align: center; opacity: 0.6; margin-top: 2rem">
+              No devices discovered yet.<br />
+              Click "Start Scan" to begin.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Local Scripts -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
+</html>

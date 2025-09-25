@@ -1,0 +1,293 @@
+/* Network Discovery MVP Dashboard Styles */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  color: white;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Header Styles */
+.header {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.header h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+/* Controls and Buttons */
+.controls {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+.btn.primary {
+  background: #4caf50;
+  border-color: #45a049;
+}
+
+.btn.primary:hover {
+  background: #45a049;
+}
+
+.btn.auto-scan {
+  background: #ff9800;
+  border-color: #f57c00;
+}
+
+.btn.auto-scan:hover {
+  background: #f57c00;
+}
+
+.btn.auto-scan.active {
+  background: #ff5722;
+  border-color: #e64a19;
+  box-shadow: 0 0 10px rgba(255, 87, 34, 0.5);
+}
+
+.status {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.auto-scan-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: 1rem;
+  padding-left: 1rem;
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.interval-input {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  width: 60px;
+  text-align: center;
+  font-size: 0.8rem;
+}
+
+.interval-input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Main Layout */
+.main-container {
+  display: flex;
+  height: calc(100vh - 80px);
+}
+
+.network-graph {
+  flex: 1;
+  background: rgba(0, 0, 0, 0.1);
+  margin: 1rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+#cy {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 320px;
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+/* Device List */
+.device-list {
+  margin-top: 1rem;
+}
+
+.device-item {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 0.75rem;
+  margin-bottom: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.device-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateX(4px);
+}
+
+.device-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.device-icon {
+  font-size: 1.2rem;
+  width: 20px;
+  text-align: center;
+}
+
+.device-ip {
+  font-weight: 600;
+  color: #4caf50;
+  font-size: 0.9rem;
+}
+
+.device-hostname {
+  font-size: 0.8rem;
+  opacity: 0.8;
+  margin-bottom: 0.25rem;
+  padding-left: 1.7rem;
+}
+
+.device-type {
+  font-size: 0.75rem;
+  color: #81c784;
+  margin-bottom: 0.25rem;
+  padding-left: 1.7rem;
+}
+
+.device-mac {
+  font-size: 0.7rem;
+  opacity: 0.6;
+  padding-left: 1.7rem;
+  margin-top: 0.25rem;
+  font-family: monospace;
+}
+
+.device-status {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  margin-top: 0.25rem;
+  padding: 2px 6px;
+  border-radius: 3px;
+  display: inline-block;
+  margin-left: 1.7rem;
+}
+
+.status-up {
+  background: #4caf50;
+  color: white;
+}
+
+/* Loading Animation */
+.loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  opacity: 0.7;
+}
+
+.spinner {
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top: 3px solid white;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Stats Section */
+.stats {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.stats h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.stat-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.25rem;
+  font-size: 0.9rem;
+}
+
+/* Auto-Scan Status */
+.auto-scan-status {
+  background: rgba(255, 152, 0, 0.1);
+  border: 1px solid rgba(255, 152, 0, 0.3);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.auto-scan-status h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  color: #ff9800;
+}
+
+.auto-scan-status.active h3 {
+  color: #ff5722;
+}
+
+.next-scan {
+  font-size: 0.8rem;
+  opacity: 0.8;
+  margin-top: 0.25rem;
+}
+
+.countdown {
+  font-weight: 600;
+  color: #ff5722;
+}
