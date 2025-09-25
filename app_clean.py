@@ -12,7 +12,8 @@ from datetime import datetime, timedelta
 import requests
 import queue
 
-app = Flask(__name__)
+# Use project root as the templates folder so dashboard.html can live at repo root
+app = Flask(__name__, template_folder='.', static_folder='static')
 app.config['SECRET_KEY'] = 'network-discovery-mvp-2025'
 socketio = SocketIO(app, cors_allowed_origins="*")
 
